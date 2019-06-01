@@ -1,0 +1,155 @@
+priority -40
+
+snippet putest "PHPUnit / Test Case" b
+<?php
+
+namespace `!v substitute(substitute(substitute(expand("%:p"), '\v(.*\/\U+)((\/\w+)+)\/\w+.php$', '\2', ''), '\/', '\\', 'g'), '\\', '', '')`;
+
+/**
+ * Class: `!p snip.rv = snip.basename or "ClassName"`
+ *
+ * @see \PHPUnit_Framework_TestCase
+ */
+class `!p snip.rv = snip.basename or "ClassName"` extends \PHPUnit_Framework_TestCase
+{
+	${0}
+}
+endsnippet
+
+snippet pumock "PHPUnit / Mock Builder"
+\$this
+	->getMockBuilder('${1}')
+	->setMethods(array(${2}))
+	->disableOriginalConstructor()
+	->getMock()${0}
+endsnippet
+
+snippet pumockpartial "PHPUnit / Mock Builder Partial"
+\$this
+	->getMockBuilder('${1}')
+	->setConstructorArgs(array(${2}))
+	->setMethods(array(${3}))
+	->getMock()${0}
+endsnippet
+
+snippet puexpects "PHPUnit / Expects"
+->expects($this->${1:once}())
+->method('${2}')
+->with(\$this->equalTo(${3}))
+->will(\$this->${4:returnValue}(${5}))${0}
+endsnippet
+
+snippet puexpectsat "PHPUnit / Expects at"
+->expects($this->at(${1:0}))
+->method('${2}')
+->with(\$this->equalTo(${3}))
+->will(\$this->${4:returnValue}(${5}))${0}
+endsnippet
+
+
+# phpunit
+snippet ase "$this->assertEquals($a, $b)"
+\$this->assertEquals(${1:$expected}, ${2:$actual});
+endsnippet
+snippet asne "$this->assertNotEquals($a, $b)"
+\$this->assertNotEquals(${1:$expected}, ${2:$actual});
+endsnippet
+snippet asf "$this->assertFalse($a)"
+\$this->assertFalse(${1});
+endsnippet
+snippet ast "$this->assertTrue($a)"
+\$this->assertTrue(${1});
+endsnippet
+snippet asfex "$this->assertFileExists('path/to/file')"
+\$this->assertFileExists(${1:'path/to/file'});
+endsnippet
+snippet asfnex "$this->assertFileNotExists('path/to/file')"
+\$this->assertFileNotExists(${1:'path/to/file'});
+endsnippet
+snippet ascon "$this->assertContains($needle, $haystack)"
+\$this->assertContains(${1:$needle}, ${2:$haystack});
+endsnippet
+snippet asncon "$this->assertNotContains($needle, $haystack)"
+\$this->assertNotContains(${1:$needle}, ${2:$haystack});
+endsnippet
+snippet ascono "$this->assertContainsOnly($needle, $haystack)"
+\$this->assertContainsOnly(${1:$needle}, ${2:$haystack});
+endsnippet
+snippet asconoi "$this->assertContainsOnlyInstancesOf(Example::class, $haystack)"
+\$this->assertContainsOnlyInstancesOf(${1:Example}::class, ${2:$haystack});
+endsnippet
+snippet ashk "$this->assertArrayHasKey($key, $array)"
+\$this->assertArrayHasKey(${1:$key}, ${2:$array});
+endsnippet
+snippet asnhk "$this->assertArrayNotHasKey($key, $array)"
+this->assertArrayNotHasKey(${1:$key}, ${2:$array});
+endsnippet
+snippet ascha "$this->assertClassHasAttribute($name, Example::class)"
+\$this->assertClassHasAttribute(${1:$attributeName}, ${2:Example}::class);
+endsnippet
+snippet asi "$this->assertInstanceOf(Example::class, $actual)"
+\$this->assertInstanceOf(${1:Example}::class, ${2:$actual});
+endsnippet
+snippet asit "$this->assertInternalType('string', $actual)"
+\$this->assertInternalType(${1:'string'}, ${2:actual});
+endsnippet
+snippet asco "$this->assertCount($count, $haystack)"
+\$this->assertCount(${1:$expectedCount}, ${2:$haystack});
+endsnippet
+snippet asnco "$this->assertNotCount($count, $haystack)"
+\$this->assertNotCount(${1:$count}, ${2:$haystack});
+endsnippet
+snippet assub "$this->assertArraySubset($subset, $array)"
+\$this->assertArraySubset(${1:$subset}, ${2:$array});
+endsnippet
+snippet asnu "$this->assertNull($a)"
+\$this->assertNull(${1});
+endsnippet
+snippet asnnu "$this->assertNotNull($a)"
+\$this->assertNotNull(${1});
+endsnippet
+snippet test "public function testXYZ() { ... }"
+public function test${1}()
+{
+	${0:${VISUAL}}
+}
+endsnippet
+snippet setup "protected function setUp() { ... }"
+protected function setUp()
+{
+	${0:${VISUAL}}
+}
+endsnippet
+snippet teardown "protected function tearDown() { ... }"
+protected function tearDown()
+{
+	${0:${VISUAL}}
+}
+endsnippet
+snippet proph "$observer = $this->prophesize(SomeClass::class);"
+$${1:observer} = $this->prophesize(${2:SomeClass}::class);
+endsnippet
+snippet mock "$mock = $this->createMock(SomeClass::class);"
+$${1:mock} = $this->createMock(${2:SomeClass}::class);
+endsnippet
+snippet exp "phpunit expects"
+expects($this->${1:once}())
+	->method('${2}')
+	->with(${3})
+	->willReturn(${4});
+endsnippet
+snippet testcmt "phpunit comment with group"
+/**
+* @group ${1}
+*/
+endsnippet
+snippet fail "$this->fail()"
+\$this->fail(${1});
+endsnippet
+snippet marki "$this->markTestIncomplete()"
+\$this->markTestIncomplete(${1});
+endsnippet
+snippet marks "$this->markTestSkipped()"
+\$this->markTestSkipped(${1});
+endsnippet
+# end of phpunit snippets

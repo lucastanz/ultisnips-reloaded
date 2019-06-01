@@ -1,0 +1,77 @@
+priority -40
+
+snippet sfcommandca "Symfony2 / Command / Command class (container aware)" b
+<?php
+
+namespace `!v substitute(substitute(substitute(expand("%:p"), '\v(.*\/\U+)((\/\w+)+)\/\w+.php$', '\2', ''), '\/', '\\', 'g'), '\\', '', '')`;
+
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Class: `!p snip.rv = snip.basename or "CommandClass"`
+ *
+ * @see http://symfony.com/doc/current/cookbook/console/console_command.html
+ * @see ContainerAwareCommand
+ */
+class `!p snip.rv = snip.basename or "CommandClass"` extends ContainerAwareCommand
+{
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function configure()
+	{
+		\$this
+			->setName('${1:default:command}')
+			->setDescription('${2:Default description}')
+			;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function execute(InputInterface \$input, OutputInterface \$output)
+	{
+		${0}
+	}
+}
+endsnippet
+
+snippet sfcommand "Symfony2 / Command / Command class" b
+<?php
+
+namespace `!v substitute(substitute(substitute(expand("%:p"), '\v(.*\/\U+)((\/\w+)+)\/\w+.php$', '\2', ''), '\/', '\\', 'g'), '\\', '', '')`;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Class: `!p snip.rv = snip.basename or "CommandClass"`
+ *
+ * @see http://symfony.com/doc/current/cookbook/console/console_command.html
+ * @see Command
+ */
+class `!p snip.rv = snip.basename or "CommandClass"` extends Command
+{
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function configure()
+	{
+		\$this
+			->setName('${1:default:command}')
+			->setDescription('${2:Default description}')
+			;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function execute(InputInterface \$input, OutputInterface \$output)
+	{
+		${0}
+	}
+}
+endsnippet

@@ -1,0 +1,22 @@
+priority -40
+
+snippet column "find a column in a mysql db" b
+SELECT * FROM information_schema.columns WHERE column_name LIKE '%${1}%';
+endsnippet
+
+snippet columns "get all columns from a table" b
+SELECT column_name FROM information_schema.columns WHERE table_name LIKE '%${1}%';
+endsnippet
+
+snippet table "find a table in a mysql db" b
+SELECT * FROM information_schema.tables WHERE table_name LIKE '%${1}%';
+endsnippet
+
+snippet createtable "create a table in a mysql db" b
+CREATE TABLE ${1}_example (
+	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	${2}field VARCHAR(100) NOT NULL,
+	${3}created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	${4}updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+endsnippet
